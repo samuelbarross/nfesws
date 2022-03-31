@@ -1,0 +1,29 @@
+<%= form_for(@dominio_valor) do |f| %>
+  <% if @dominio_valor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dominio_valor.errors.count, "error") %> prohibited this dominio_valor from being saved:</h2>
+
+      <ul>
+      <% @dominio_valor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :codigo %><br>
+    <%= f.text_field :codigo %>
+  </div>
+  <div class="field">
+    <%= f.label :descricao %><br>
+    <%= f.text_field :descricao %>
+  </div>
+  <div class="field">
+    <%= f.label :dominio_id %><br>
+    <%= f.text_field :dominio_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

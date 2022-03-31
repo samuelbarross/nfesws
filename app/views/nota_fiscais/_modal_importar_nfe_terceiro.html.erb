@@ -1,0 +1,22 @@
+<div class="modal inmodal" id="modal-importar-terceiro" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-lg", style="width: 625px !important;">
+		<div class="modal-content animated bounceInRight">
+			<%= form_tag(download_nfe_terceiro_nota_fiscais_path, method: :post, multipart: true) do %>
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Download</h4>
+				</div>
+				<div class="modal-body">
+					<%= select_tag :emp_id, options_for_select(@cnpjs.collect{ |c| [c.nome, c.id] }), { :prompt => "Por favor, selecione a empresa", class: 'form-control', required: true }  %>
+				</div>
+				<div class="modal-body">
+					<%= text_field_tag :chave_nfe, '', class: 'form-control', required: true, placeholder: 'insira a chave da nfe' %>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+					<%= submit_tag "Download", class: "btn btn-primary" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

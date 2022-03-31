@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codigo: MyString
+  descricao: MyString
+  dominio_id: 
+
+two:
+  codigo: MyString
+  descricao: MyString
+  dominio_id: 

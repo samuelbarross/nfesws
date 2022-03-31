@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data: 2016-07-05 09:50:24
+  cnpj: MyString
+  xml_retorno: MyText
+  mensagem: MyString
+
+two:
+  data: 2016-07-05 09:50:24
+  cnpj: MyString
+  xml_retorno: MyText
+  mensagem: MyString

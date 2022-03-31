@@ -1,0 +1,293 @@
+<%= form_for(@nota_fiscal) do |f| %>
+  <% if @nota_fiscal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@nota_fiscal.errors.count, "error") %> prohibited this nota_fiscal from being saved:</h2>
+
+      <ul>
+      <% @nota_fiscal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nrChaveNfe %><br>
+    <%= f.text_field :nrChaveNfe %>
+  </div>
+  <div class="field">
+    <%= f.label :nrNfe %><br>
+    <%= f.number_field :nrNfe %>
+  </div>
+  <div class="field">
+    <%= f.label :codModeloNfe %><br>
+    <%= f.number_field :codModeloNfe %>
+  </div>
+  <div class="field">
+    <%= f.label :serieNfe %><br>
+    <%= f.text_field :serieNfe %>
+  </div>
+  <div class="field">
+    <%= f.label :dtEmissaoNfe %><br>
+    <%= f.datetime_select :dtEmissaoNfe %>
+  </div>
+  <div class="field">
+    <%= f.label :dtSaidaEntradaNfe %><br>
+    <%= f.datetime_select :dtSaidaEntradaNfe %>
+  </div>
+  <div class="field">
+    <%= f.label :valorTotalNfe %><br>
+    <%= f.text_field :valorTotalNfe %>
+  </div>
+  <div class="field">
+    <%= f.label :nomeEmitente %><br>
+    <%= f.text_field :nomeEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :nomeFantasiaEmitente %><br>
+    <%= f.text_field :nomeFantasiaEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :cpfCnpjEmitente %><br>
+    <%= f.text_field :cpfCnpjEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :logradouroEmitente %><br>
+    <%= f.text_field :logradouroEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :nrEnderecoEmitente %><br>
+    <%= f.text_field :nrEnderecoEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :complementoEnderecoEmitente %><br>
+    <%= f.text_field :complementoEnderecoEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :bairroEmitente %><br>
+    <%= f.text_field :bairroEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :cepEmitente %><br>
+    <%= f.number_field :cepEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :codMunicipioEmitente %><br>
+    <%= f.number_field :codMunicipioEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :telefoneEmitente %><br>
+    <%= f.number_field :telefoneEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :ufEmitente %><br>
+    <%= f.text_field :ufEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :codPaisEmitente %><br>
+    <%= f.number_field :codPaisEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :inscricaoEstadualEmitente %><br>
+    <%= f.text_field :inscricaoEstadualEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :inscricaoEstadualSubsTribEmitente %><br>
+    <%= f.text_field :inscricaoEstadualSubsTribEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :inscricaoMunicipalEmitente %><br>
+    <%= f.text_field :inscricaoMunicipalEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :codMunicipioFatorGeradorICMSEmitente %><br>
+    <%= f.number_field :codMunicipioFatorGeradorICMSEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :cnaeFiscalEmitente %><br>
+    <%= f.number_field :cnaeFiscalEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :crtEmitente %><br>
+    <%= f.number_field :crtEmitente %>
+  </div>
+  <div class="field">
+    <%= f.label :nomeDestinatario %><br>
+    <%= f.text_field :nomeDestinatario %>
+  </div>
+  <div class="field">
+    <%= f.label :cpfCnpjDestinatario %><br>
+    <%= f.text_field :cpfCnpjDestinatario %>
+  </div>
+  <div class="field">
+    <%= f.label :logradouroDestinatario %><br>
+    <%= f.text_field :logradouroDestinatario %>
+  </div>
+  <div class="field">
+    <%= f.label :nrEnderecoDestinatario %><br>
+    <%= f.text_field :nrEnderecoDestinatario %>
+  </div>
+  <div class="field">
+    <%= f.label :bairroDestinatario %><br>
+    <%= f.text_field :bairroDestinatario %>
+  </div>
+  <div class="field">
+    <%= f.label :cepDestinatario %><br>
+    <%= f.number_field :cepDestinatario %>
+  </div>
+  <div class="field">
+    <%= f.label :codMunicipioDestinatario %><br>
+    <%= f.number_field :codMunicipioDestinatario %>
+  </div>
+  <div class="field">
+    <%= f.label :telefoneDestinatario %><br>
+    <%= f.number_field :telefoneDestinatario %>
+  </div>
+  <div class="field">
+    <%= f.label :ufDestinatario %><br>
+    <%= f.text_field :ufDestinatario %>
+  </div>
+  <div class="field">
+    <%= f.label :codPaisDestinatario %><br>
+    <%= f.number_field :codPaisDestinatario %>
+  </div>
+  <div class="field">
+    <%= f.label :indicadorIEDestinatario %><br>
+    <%= f.number_field :indicadorIEDestinatario %>
+  </div>
+  <div class="field">
+    <%= f.label :inscricaoEstadualDestinatario %><br>
+    <%= f.text_field :inscricaoEstadualDestinatario %>
+  </div>
+  <div class="field">
+    <%= f.label :inscricaoSuframa %><br>
+    <%= f.number_field :inscricaoSuframa %>
+  </div>
+  <div class="field">
+    <%= f.label :inscricaoMunicipalTomadorServico %><br>
+    <%= f.text_field :inscricaoMunicipalTomadorServico %>
+  </div>
+  <div class="field">
+    <%= f.label :emailDestinatario %><br>
+    <%= f.text_field :emailDestinatario %>
+  </div>
+  <div class="field">
+    <%= f.label :codDestinoOperacaoDestinatario %><br>
+    <%= f.number_field :codDestinoOperacaoDestinatario %>
+  </div>
+  <div class="field">
+    <%= f.label :codConsumidorFinal %><br>
+    <%= f.number_field :codConsumidorFinal %>
+  </div>
+  <div class="field">
+    <%= f.label :codPresencaComprador %><br>
+    <%= f.number_field :codPresencaComprador %>
+  </div>
+  <div class="field">
+    <%= f.label :codProcessoEmissao %><br>
+    <%= f.number_field :codProcessoEmissao %>
+  </div>
+  <div class="field">
+    <%= f.label :versaoProcesso %><br>
+    <%= f.text_field :versaoProcesso %>
+  </div>
+  <div class="field">
+    <%= f.label :tipoEmissao %><br>
+    <%= f.number_field :tipoEmissao %>
+  </div>
+  <div class="field">
+    <%= f.label :codFinalidadeEmissao %><br>
+    <%= f.number_field :codFinalidadeEmissao %>
+  </div>
+  <div class="field">
+    <%= f.label :naturezaOperacao %><br>
+    <%= f.text_field :naturezaOperacao %>
+  </div>
+  <div class="field">
+    <%= f.label :tipOperacao %><br>
+    <%= f.number_field :tipOperacao %>
+  </div>
+  <div class="field">
+    <%= f.label :codFormaPagamento %><br>
+    <%= f.number_field :codFormaPagamento %>
+  </div>
+  <div class="field">
+    <%= f.label :nrProtocoloNfe %><br>
+    <%= f.number_field :nrProtocoloNfe %>
+  </div>
+  <div class="field">
+    <%= f.label :dtRecebimentoNfe %><br>
+    <%= f.datetime_select :dtRecebimentoNfe %>
+  </div>
+  <div class="field">
+    <%= f.label :valorBaseCalculoICMS %><br>
+    <%= f.text_field :valorBaseCalculoICMS %>
+  </div>
+  <div class="field">
+    <%= f.label :valorICMS %><br>
+    <%= f.text_field :valorICMS %>
+  </div>
+  <div class="field">
+    <%= f.label :valorICMSDesonerado %><br>
+    <%= f.text_field :valorICMSDesonerado %>
+  </div>
+  <div class="field">
+    <%= f.label :valorBaseCalculoICMSST %><br>
+    <%= f.text_field :valorBaseCalculoICMSST %>
+  </div>
+  <div class="field">
+    <%= f.label :valorICMSSubstituicao %><br>
+    <%= f.text_field :valorICMSSubstituicao %>
+  </div>
+  <div class="field">
+    <%= f.label :valorTotalProduto %><br>
+    <%= f.text_field :valorTotalProduto %>
+  </div>
+  <div class="field">
+    <%= f.label :valorFrete %><br>
+    <%= f.text_field :valorFrete %>
+  </div>
+  <div class="field">
+    <%= f.label :valorSeguro %><br>
+    <%= f.text_field :valorSeguro %>
+  </div>
+  <div class="field">
+    <%= f.label :valorOutrasDespesasAcessorias %><br>
+    <%= f.text_field :valorOutrasDespesasAcessorias %>
+  </div>
+  <div class="field">
+    <%= f.label :valorTotalIPI %><br>
+    <%= f.text_field :valorTotalIPI %>
+  </div>
+  <div class="field">
+    <%= f.label :valorTotalDesconto %><br>
+    <%= f.text_field :valorTotalDesconto %>
+  </div>
+  <div class="field">
+    <%= f.label :valorTotalII %><br>
+    <%= f.text_field :valorTotalII %>
+  </div>
+  <div class="field">
+    <%= f.label :valorPIS %><br>
+    <%= f.text_field :valorPIS %>
+  </div>
+  <div class="field">
+    <%= f.label :valorCOFINS %><br>
+    <%= f.text_field :valorCOFINS %>
+  </div>
+  <div class="field">
+    <%= f.label :valorAproximadoTributos %><br>
+    <%= f.text_field :valorAproximadoTributos %>
+  </div>
+  <div class="field">
+    <%= f.label :modalidadeFrete %><br>
+    <%= f.number_field :modalidadeFrete %>
+  </div>
+  <div class="field">
+    <%= f.label :informacoesComplementaresNfe %><br>
+    <%= f.text_field :informacoesComplementaresNfe %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

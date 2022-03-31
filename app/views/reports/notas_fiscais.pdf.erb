@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<%#= wicked_pdf_stylesheet_link_tag "reports" %>
+		<style TYPE="text/css">
+			td { font-family: Arial; font-size: 8pt; }
+			th { background-color: #4CAF50; color: white; }
+			table, tr, td, th, tbody, thead, tfoot { page-break-inside: avoid !important; }
+		</style>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td>Filtros</td>
+			</tr>
+			<%= search_form_for @search do |f| %>
+				<%= f.condition_fields do |c| %>
+						<tr>
+							<td>
+								<%= c.attribute_fields do |a| %>
+									<%= a.attribute_select()%>
+								<% end %>
+								<%= c.predicate_select %>
+									<%= c.value_fields do |v| %>
+										<%= v.text_field :value %>
+								<% end %>
+							</td>
+						</tr>
+				<% end %>
+			<% end %>
+		</table>
+		</br>
+		<table width="100%" class="table table-condensed table-striped" border="1">
+			<thead style="font-family: Arial; font-size: 8pt;">  
+				<tr>
+					<th>Id</th>
+					<th>Empresa</th>
+					<th>Baixada?</th>
+					<th>Status</th>
+					<th>Manifesto</th>
+					<th>Chave</th>
+					<th>Emitente</th>
+					<th>Valor</th>
+					<th>Emissão</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%= content_tag_for(:tr, @nota_fiscais.select(:cpfCnpjDestinatario).distinct.each) do |f| %>
+					<% total = 0 %>
+      				<%= content_tag_for(:tr, @nota_fiscais.where(cpfCnpjDestinatario: f.cpfCnpjDestinatario)) do |n| %>
+						<td style="text-align: center;"><%= n.id %></td>
+						<td style="text-align: left;"><%= n.empresa.nome %></td>
+						<td style="text-align: center;"><% if n.baixada then %>ok<% end %></td>
+						<td style="text-align: center;"><%= n.codSituacaoNfe %></td>
+						<td style="text-align: center;"><%= n.codSituacaoManifestacaoDestinatario %></td>
+						<td style="text-align: left;"><%= n.nrChaveNfe %></td>
+						<td style="text-align: left;"><%= n.nomeEmitente %></td>
+						<td style="text-align: right;"><%= number_with_precision(n.valorTotalNfe, :precision => 2) %></td>
+						<td style="text-align: center;"><%= n.dtEmissaoNfe.try(:strftime, '%d/%m/%Y') %></td>
+						<% total +=  n.valorTotalNfe %>
+					<% end %>
+					<td colspan="8" style="text-align: right"><b>Total: <%= number_with_precision(total, :precision => 2) %></b></td>
+					<td colspan="1"></td>
+				<% end %>
+			</tbody>
+		</table>
+	</body>
+</html>

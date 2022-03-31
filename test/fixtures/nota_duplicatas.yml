@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nrDuplicata: MyString
+  dtVencimento: 2015-11-18
+  valorDuplicata: 1.5
+  notaFiscal_id: 
+
+two:
+  nrDuplicata: MyString
+  dtVencimento: 2015-11-18
+  valorDuplicata: 1.5
+  notaFiscal_id: 

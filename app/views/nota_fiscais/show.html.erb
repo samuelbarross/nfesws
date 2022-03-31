@@ -1,0 +1,1256 @@
+<%- model_class = NotaFiscal -%>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h2>Nota Fiscal</h2>
+        <ol class="breadcrumb">
+            <!-- <li><a href="<%= url_for :controller => 'home', :action => 'index' %>">Home</a></li> -->
+            <!-- <li class="active"><strong>Dados da Nota</strong></li> -->
+        </ol>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+<p id="notice"><%= notice %></p>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <!-- Nfe -->
+        <div class="col-lg-12">
+            <div class="ibox collapsed">
+                <div class="ibox-title">
+                    <h5>Nota</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                    <div class="ibox-content">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:nrChaveNfe) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.nrChaveNfe %>
+                                    </label>
+                                </div>                        
+                            </div>   
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:nrNfe) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.nrNfe %>
+                                    </label>
+                                </div>
+                            </div>                            
+                            <div class="hr-line-dashed"></div> 
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:codModeloNfe) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.codModeloNfe %>
+                                    </label>
+                                </div>
+                            </div>                            
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:serieNfe) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.serieNfe %>
+                                    </label>
+                                </div>
+                            </div>     
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:dtEmissaoNfe) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.dtEmissaoNfe.strftime("%d/%m/%Y") %>
+                                    </label>
+                                </div>
+                            </div>                            
+                            <div class="hr-line-dashed"></div>                       
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                     <%= model_class.human_attribute_name(:dtSaidaEntradaNfe) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.dtSaidaEntradaNfe %>
+                                    </label>
+                                </div>
+                            </div>                            
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:valorTotalNfe) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= number_with_precision(@nota_fiscal.valorTotalNfe, precision: 2) %>
+                                    </label>
+                                </div>
+                            </div>                            
+                        </form>    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Emitente -->
+        <div class="col-lg-12">
+            <div class="ibox collapsed">
+                <div class="ibox-title">
+                    <h5>Emitente</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                    <div class="ibox-content">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:nomeEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.nomeEmitente %>
+                                    </label>
+                                </div>
+                            </div>                           
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:nomeFantasiaEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.nomeFantasiaEmitente %>
+                                    </label>
+                                </div>
+                            </div>   
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                     <%= model_class.human_attribute_name(:cpfCnpjEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= if !@nota_fiscal.cpfCnpjEmitente.nil?
+                                            if @nota_fiscal.cpfCnpjEmitente.length == 11
+                                                @nota_fiscal.cpfCnpjEmitente.gsub(/(\d{3})(\d{3})(\d{3})(\d{2})/, "\\1.\\2.\\3-\\4")
+                                            elsif @nota_fiscal.cpfCnpjEmitente.length == 14
+                                                @nota_fiscal.cpfCnpjEmitente.gsub(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "\\1.\\2.\\3/\\4-\\5")
+                                            end    
+                                        end %>  
+                                    </label>
+                                </div>
+                            </div>     
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:logradouroEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.logradouroEmitente %>
+                                    </label>
+                                </div>
+                            </div> 
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:nrEnderecoEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.nrEnderecoEmitente %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:complementoEnderecoEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.complementoEnderecoEmitente %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:bairroEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.bairroEmitente %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:cepEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= if !@nota_fiscal.cepEmitente.nil?
+                                            @nota_fiscal.cepEmitente.to_s.insert(2, ".").insert(6, "-") 
+                                        end %>                                 
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:codMunicipioEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.codMunicipioEmitente %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                     <%= model_class.human_attribute_name(:telefoneEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control" >
+                                        <%= if !@nota_fiscal.telefoneEmitente.nil?
+                                            if @nota_fiscal.telefoneEmitente.length == 8
+                                                @nota_fiscal.telefoneEmitente.to_s.insert(0, "(").insert(3, ")").insert(8,"-")
+                                            elsif @nota_fiscal.telefoneEmitente.length == 10
+                                                @nota_fiscal.telefoneEmitente.to_s.insert(0, "(").insert(3, ")").insert(8,"-")
+                                            else
+                                                @nota_fiscal.telefoneEmitente
+                                            end    
+                                        end %>  
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:ufEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.ufEmitente %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:codPaisEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.codPaisEmitente %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:inscricaoEstadualEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.inscricaoEstadualEmitente %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:inscricaoEstadualSubsTribEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.inscricaoEstadualSubsTribEmitente %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:inscricaoMunicipalEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.inscricaoMunicipalEmitente %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:codMunicipioFatorGeradorICMSEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.codMunicipioFatorGeradorICMSEmitente %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:cnaeFiscalEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.cnaeFiscalEmitente %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:crtEmitente) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.crtEmitente %>
+                                    </label>
+                                </div>
+                            </div>
+                        </form>    
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <!-- Destinátario -->
+        <div class="col-lg-12">
+            <div class="ibox collapsed">
+                <div class="ibox-title">
+                    <h5>Destinatário</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                    <div class="ibox-content">
+                        <form class="form-horizontal">   
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:nomeDestinatario) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.nomeDestinatario %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:cpfCnpjDestinatario) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= if !@nota_fiscal.cpfCnpjDestinatario.nil?
+                                            if @nota_fiscal.cpfCnpjDestinatario.length == 11
+                                                @nota_fiscal.cpfCnpjDestinatario.gsub(/(\d{3})(\d{3})(\d{3})(\d{2})/, "\\1.\\2.\\3-\\4")
+                                            elsif @nota_fiscal.cpfCnpjDestinatario.length == 14
+                                                @nota_fiscal.cpfCnpjDestinatario.gsub(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "\\1.\\2.\\3/\\4-\\5")
+                                            end    
+                                        end %>                                                                        
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:logradouroDestinatario) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.logradouroDestinatario %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:nrEnderecoDestinatario) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.nrEnderecoDestinatario %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:complementoEnderecoDestinatario) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.complementoEnderecoDestinatario %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:bairroDestinatario) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.bairroDestinatario %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:cepDestinatario) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= if !@nota_fiscal.cepDestinatario.nil?
+                                            @nota_fiscal.cepDestinatario.to_s.insert(2, ".").insert(6, "-") 
+                                        end %>  
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:codMunicipioDestinatario) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.codMunicipioDestinatario %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:telefoneDestinatario) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= if !@nota_fiscal.telefoneDestinatario.nil?
+                                            if @nota_fiscal.telefoneDestinatario.length == 8
+                                                @nota_fiscal.telefoneDestinatario.to_s.insert(0, "(").insert(3, ")").insert(8,"-")
+                                            elsif @nota_fiscal.telefoneDestinatario.length == 10
+                                                @nota_fiscal.telefoneDestinatario.to_s.insert(0, "(").insert(3, ")").insert(8,"-")
+                                            else
+                                                @nota_fiscal.telefoneDestinatario
+                                            end    
+                                        end %>                                 
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:ufDestinatario) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.ufDestinatario %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:codPaisDestinatario) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.codPaisDestinatario %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:indicadorIEDestinatario) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.indicadorIEDestinatario %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                             <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:inscricaoEstadualDestinatario) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.inscricaoEstadualDestinatario %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:inscricaoSuframa) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.inscricaoSuframa %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:inscricaoMunicipalTomadorServico) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.inscricaoMunicipalTomadorServico %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:emailDestinatario) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.emailDestinatario %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:codDestinoOperacaoDestinatario) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.codDestinoOperacaoDestinatario %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                             <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:codConsumidorFinal) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.codConsumidorFinal %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                             <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:codPresencaComprador) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.codPresencaComprador %>
+                                    </label>
+                                </div>
+                            </div>
+                        </form>    
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <!-- Emissão -->
+        <div class="col-lg-12">
+            <div class="ibox collapsed">
+                <div class="ibox-title">
+                    <h5>Emissão</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                    <div class="ibox-content">
+                        <form class="form-horizontal">    
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:codProcessoEmissao) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.codProcessoEmissao %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:versaoProcesso) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.versaoProcesso %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:tipoEmissao) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.tipoEmissao %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:codFinalidadeEmissao) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.codFinalidadeEmissao %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:naturezaOperacao) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.naturezaOperacao %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:tipOperacao) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.tipOperacao %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:codFormaPagamento) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.codFormaPagamento %>
+                                    </label>
+                                </div>
+                            </div>                                             
+                        </form>    
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <!-- Totais -->     
+        <div class="col-lg-12">
+            <div class="ibox collapsed">
+                <div class="ibox-title">
+                    <h5>Totais</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                    <div class="ibox-content">
+                        <form class="form-horizontal">      
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:valorBaseCalculoICMS) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= number_with_precision(@nota_fiscal.valorBaseCalculoICMS, precision: 2) %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:valorICMS) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= number_with_precision(@nota_fiscal.valorICMS, precision: 2) %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:valorICMSDesonerado) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= number_with_precision(@nota_fiscal.valorICMSDesonerado, precision: 2) %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:valorBaseCalculoICMSST) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= number_with_precision(@nota_fiscal.valorBaseCalculoICMSST, precision: 2) %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:valorICMSSubstituicao) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= number_with_precision(@nota_fiscal.valorICMSSubstituicao, precision: 2) %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:valorTotalProduto) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= number_with_precision(@nota_fiscal.valorTotalProduto, precision: 2) %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:valorFrete) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= number_with_precision(@nota_fiscal.valorFrete, precision: 2) %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:valorSeguro) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= number_with_precision(@nota_fiscal.valorSeguro, precision: 2) %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:valorOutrasDespesasAcessorias) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= number_with_precision(@nota_fiscal.valorOutrasDespesasAcessorias, precision: 2) %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:valorTotalIPI) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= number_with_precision(@nota_fiscal.valorTotalIPI, precision: 2) %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:valorTotalNfe) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">    
+                                        <%= number_with_precision(@nota_fiscal.valorTotalNfe, precision: 2) %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:valorTotalDesconto) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= number_with_precision(@nota_fiscal.valorTotalDesconto, precision: 2) %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:valorTotalII) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= number_with_precision(@nota_fiscal.valorTotalII, precision: 2) %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:valorPIS) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= number_with_precision(@nota_fiscal.valorPIS, precision: 2) %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:valorCOFINS) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= number_with_precision(@nota_fiscal.valorCOFINS, precision: 2) %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:valorAproximadoTributos) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= number_with_precision(@nota_fiscal.valorAproximadoTributos, precision: 2) %>
+                                    </label>
+                                </div>
+                            </div>
+                        </form>    
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <!-- Transporte -->
+        <div class="col-lg-12">
+            <div class="ibox collapsed">
+                <div class="ibox-title">
+                    <h5>Transporte</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                    <div class="ibox-content">
+                        <form class="form-horizontal">      
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:modalidadeFrete) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.modalidadeFrete %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:transporteQtde) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.transporteQtde %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:transporteEspecie) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.transporteEspecie %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:transporteMarcaDosVolumes) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.transporteMarcaDosVolumes %>
+                                    </label>
+                                </div>
+                            </div>                        
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:transporteNumeracao) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.transporteNumeracao %>
+                                    </label>
+                                </div>
+                            </div>  
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:transportePesoLiquido) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.transportePesoLiquido %>
+                                    </label>
+                                </div>
+                            </div>   
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:transportePesoBruto) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.transportePesoBruto %>
+                                    </label>
+                                </div>
+                            </div>                                                  
+                        </form>    
+                    </div>
+                </div>
+            </div>
+        </div>         
+        <!-- Local Entrega -->
+        <div class="col-lg-12">
+            <div class="ibox collapsed">
+                <div class="ibox-title">
+                    <h5>Local Entrega</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                    <div class="ibox-content">
+                        <form class="form-horizontal">  
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:entregaCpfCnpj) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= if !@nota_fiscal.entregaCpfCnpj.nil?
+                                            if @nota_fiscal.entregaCpfCnpj.length == 11
+                                                @nota_fiscal.entregaCpfCnpj.gsub(/(\d{3})(\d{3})(\d{3})(\d{2})/, "\\1.\\2.\\3-\\4")
+                                            elsif @nota_fiscal.entregaCpfCnpj.length == 14
+                                                @nota_fiscal.entregaCpfCnpj.gsub(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "\\1.\\2.\\3/\\4-\\1")
+                                            end    
+                                        end %>                                     
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:entregaLogradouro) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.entregaLogradouro %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:entregaComplemento) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.entregaComplemento %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:entregaNumero) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.entregaNumero %>
+                                    </label>
+                                </div>
+                            </div>                        
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:entregaBairro) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.entregaBairro %>
+                                    </label>
+                                </div>
+                            </div>  
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:entregaMunicipio) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.entregaMunicipio %>
+                                    </label>
+                                </div>
+                            </div>   
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:entregaUF) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="form-control">
+                                        <%= @nota_fiscal.entregaUF %>
+                                    </label>
+                                </div>
+                            </div>                                                  
+                        </form>    
+                    </div>
+                </div>
+            </div>
+        </div>             
+        <!-- Informações Adicionais -->
+        <div class="col-lg-12">
+            <div class="ibox collapsed">
+                <div class="ibox-title">
+                    <h5>Informações Adicionais</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                    <div class="ibox-content">
+                        <form class="form-horizontal">  
+                            <div class="form-group">
+                                <div class="col-md-2 control-label">
+                                    <%= model_class.human_attribute_name(:informacoesComplementaresNfe) %>:
+                                </div>
+                                <div class="col-md-10">
+                                    <textarea disabled class="form-control">
+                                        <%= @nota_fiscal.informacoesComplementaresNfe %>
+                                    </textarea>
+                                </div>
+                            </div>
+                        </form>    
+                    </div>
+                </div>
+            </div>
+        </div>                 
+        <!-- Produtos/Duplicatas/Logs/Negar Nfe -->      
+        <div class="col-lg-12">
+            <div class="ibox-content" style="overflow: auto;">
+                <div class="panel blank-panel">
+                    <div class="panel-heading">
+                        <div class="panel-options">
+                          <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#tab-1">Itens</a></li>
+                                <li><a data-toggle="tab" href="#tab-2">Duplicatas</a></li>
+                                <li><a data-toggle="tab" href="#tab-3">Logs</a></li>
+                                <% if @nota_fiscal.codSituacaoNfe == "Autorizado"  %>
+                                    <% if @nota_fiscal.codSituacaoManifestacaoDestinatario == "Manifestar" || @nota_fiscal.codSituacaoManifestacaoDestinatario == "Ciência" || @nota_fiscal.codSituacaoManifestacaoDestinatario == "Confirmada" %>
+                                        <li><a data-toggle="tab" href="#tab-4">Negar Nfe</a></li>
+                                    <% end %>
+                                <% end %>       
+                          </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <!-- Produtos --> 
+                            <div id="tab-1" class="tab-pane active">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th width="05%">&nbsp</th>
+                                            <th >Id</th>
+                                            <th >Num.</th>
+                                            <th >Cód.</th>
+                                            <th >Descrição</th>
+                                            <th >Qtde</th>
+                                            <th >Unidade</th>
+                                            <th >Valor(R$)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% @nota_produtos.each do |p| %>
+                                            <tr class="fields">
+                                                <td><%= link_to '', p, class: "btn btn-xs fa fa-search"%></td>
+                                                <td><%= p.id %></td>
+                                                <td><%= p.nrItem %></td>
+                                                <td><%= p.codProduto %></td>
+                                                <td><%= p.descricao %></td>
+                                                <td><%= p.qtdeComercial %></td>
+                                                <td><%= p.unidadeComercial %></td>
+                                                <td><%= number_with_precision(p.valorProduto, precision: 2) %></td>
+                                            </tr>
+                                        <% end %>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Duplicatas --> 
+                            <div id="tab-2" class="tab-pane"> 
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th >Id</th>
+                                            <th>Descrição</th>
+                                            <th >Vencimento</th>
+                                            <th >Valor(R$)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% @nota_duplicatas.each do |dp| %>
+                                            <tr class="fields">
+                                                <td><%= dp.id %></td>
+                                                <td><%= dp.nrDuplicata %></td>
+                                                <td><%= dp.dtVencimento.strftime("%d/%m/%Y") %></td>
+                                                <td><%= number_with_precision(dp.valorDuplicata, precision: 2) %></td>
+                                            </tr>
+                                        <% end %>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Logs --> 
+                            <div id="tab-3" class="tab-pane"> 
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th >Id</th>
+                                            <th >Usuário</th>
+                                            <th>Ação</th>
+                                            <th >Data Ação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% @logs.each do |l| %>
+                                            <tr class="fields">
+                                                <td><%= l.id %></td>
+                                                <td><%= l.user.email %></td>
+                                                <td><%= l.acao %></td>
+                                                <td><%= l.created_at %></td>
+                                            </tr>
+                                        <% end %>
+                                    </tbody>
+                                </table>
+                            </div>    
+                            <!-- Negar Nfe --> 
+                            <% if @nota_fiscal.codSituacaoNfe == "Autorizado"  %>
+                                <% if @nota_fiscal.codSituacaoManifestacaoDestinatario == "Manifestar" || @nota_fiscal.codSituacaoManifestacaoDestinatario == "Ciência" || @nota_fiscal.codSituacaoManifestacaoDestinatario == "Confirmada" %>
+                                    <div id="tab-4" class="tab-pane">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align: center;">Ação</th>
+                                                    <th style="text-align: center;">Manifesto</th>
+                                                    <th style="text-align: center;">Justificativa</th>
+                                                    <th><%= model_class.human_attribute_name(:nrChaveNfe) %></th>
+                                                    <th><%= model_class.human_attribute_name(:nomeEmitente) %></th>
+                                                    <th><%= model_class.human_attribute_name(:valorTotalNfe) %></th>
+                                                    <th><%= model_class.human_attribute_name(:dtEmissaoNfe) %></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="vertical-align:middle;" align="center">
+                                                    <%= form_tag negar_nfe_nota_fiscais_path, method: :post do %>
+                                                        <%= hidden_field_tag :id, @nota_fiscal.id %>
+                                                        <%= hidden_field_tag :tpEvento,  NotaFiscal.tipo_eventos[:"Desconhecimento da Operação"] %>
+                                                        <%= hidden_field_tag :justificativa, "" %>
+                                                        <%= submit_tag "Negar", class: "btn btn-xs", style:"width: 95px;background-color:#BD1D1D;color:white;", id: "negar" %>
+                                                    <% end %>
+                                                    </td>
+                                                    <td style="vertical-align:middle;"><%= select_tag :codSituacaoManifestacaoDestinatario, options_for_select(NotaFiscal.codSituacaoManifestacaoDestinatarios.keys[2,2]), { class: "form-control" } %></td>
+                                                    <td align="center" style="width:200px;"><textarea disabled id="texto_justificativa" title="Tamanho mínimo 15 caracteres!" placeholder="Obrigátorio para operação não realizada..." ></textarea></td>
+                                                    <td style="vertical-align:middle;"><%= @nota_fiscal.nrChaveNfe %></td>
+                                                    <td style="vertical-align:middle;"><%= @nota_fiscal.nomeEmitente %></td>
+                                                    <td style="vertical-align:middle;"><%= number_with_precision(@nota_fiscal.valorTotalNfe, precision: 2) %></td>
+                                                    <td style="vertical-align:middle;"><%= @nota_fiscal.dtEmissaoNfe.strftime("%d/%m/%Y") %></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>                              
+                                <% end %>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+                <%= link_to 'Voltar', nota_fiscais_path, :class => 'btn btn-white' %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% content_for :javascript do %>
+    <script type="text/javascript">
+        $(function(){
+            $('#codSituacaoManifestacaoDestinatario').change(function(){
+                var tipo_manifesto = document.getElementById("codSituacaoManifestacaoDestinatario").value;
+                if (tipo_manifesto == "Desconhecida") {  
+                    document.getElementById('tpEvento').value = "210220"; // Desconhecimento da Operação com o enum em nota_fiscal
+                    document.getElementById("texto_justificativa").disabled = true;
+                    document.getElementById("texto_justificativa").value = "";
+                    document.getElementById("negar").disabled = false;
+                } else {
+                    document.getElementById('tpEvento').value = "210240"; // Operação não Realizada de acordo com o enum nota_fiscal
+                    document.getElementById("texto_justificativa").disabled = false;
+                    document.getElementById("negar").disabled = true;
+                };
+
+            });
+
+            $('#texto_justificativa').keyup(function(){
+                if (document.getElementById("texto_justificativa").value.length >= 15 ){
+                    document.getElementById('justificativa').value = document.getElementById("texto_justificativa").value;
+                    document.getElementById("negar").disabled = false;
+                } else {
+                    document.getElementById("negar").disabled = true;
+                }
+            });
+        });
+    </script>    
+<% end %>

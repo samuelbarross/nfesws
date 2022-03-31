@@ -1,0 +1,141 @@
+<%= form_for(@nota_produto) do |f| %>
+  <% if @nota_produto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@nota_produto.errors.count, "error") %> prohibited this nota_produto from being saved:</h2>
+
+      <ul>
+      <% @nota_produto.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nrItem %><br>
+    <%= f.number_field :nrItem %>
+  </div>
+  <div class="field">
+    <%= f.label :descricao %><br>
+    <%= f.text_field :descricao %>
+  </div>
+  <div class="field">
+    <%= f.label :qtdeComercial %><br>
+    <%= f.text_field :qtdeComercial %>
+  </div>
+  <div class="field">
+    <%= f.label :qtdeTributavel %><br>
+    <%= f.text_field :qtdeTributavel %>
+  </div>
+  <div class="field">
+    <%= f.label :unidadeComercial %><br>
+    <%= f.text_field :unidadeComercial %>
+  </div>
+  <div class="field">
+    <%= f.label :unidadeTributavel %><br>
+    <%= f.text_field :unidadeTributavel %>
+  </div>
+  <div class="field">
+    <%= f.label :valorUnitarioComercializacao %><br>
+    <%= f.text_field :valorUnitarioComercializacao %>
+  </div>
+  <div class="field">
+    <%= f.label :float %><br>
+    <%= f.text_field :float %>
+  </div>
+  <div class="field">
+    <%= f.label :codProduto %><br>
+    <%= f.text_field :codProduto %>
+  </div>
+  <div class="field">
+    <%= f.label :codNCM %><br>
+    <%= f.text_field :codNCM %>
+  </div>
+  <div class="field">
+    <%= f.label :codExTIPI %><br>
+    <%= f.text_field :codExTIPI %>
+  </div>
+  <div class="field">
+    <%= f.label :cfop %><br>
+    <%= f.text_field :cfop %>
+  </div>
+  <div class="field">
+    <%= f.label :outrasDespesasAcessorias %><br>
+    <%= f.text_field :outrasDespesasAcessorias %>
+  </div>
+  <div class="field">
+    <%= f.label :valorDesconto %><br>
+    <%= f.text_field :valorDesconto %>
+  </div>
+  <div class="field">
+    <%= f.label :valorTotalFrete %><br>
+    <%= f.text_field :valorTotalFrete %>
+  </div>
+  <div class="field">
+    <%= f.label :valorSeg %><br>
+    <%= f.text_field :valorSeg %>
+  </div>
+  <div class="field">
+    <%= f.label :indicadorComposicaoValorTotalNfe %><br>
+    <%= f.number_field :indicadorComposicaoValorTotalNfe %>
+  </div>
+  <div class="field">
+    <%= f.label :codEANComercial %><br>
+    <%= f.text_field :codEANComercial %>
+  </div>
+  <div class="field">
+    <%= f.label :codEANTributavel %><br>
+    <%= f.text_field :codEANTributavel %>
+  </div>
+  <div class="field">
+    <%= f.label :nrPedidoCompra %><br>
+    <%= f.number_field :nrPedidoCompra %>
+  </div>
+  <div class="field">
+    <%= f.label :itemPedidoCompra %><br>
+    <%= f.text_field :itemPedidoCompra %>
+  </div>
+  <div class="field">
+    <%= f.label :valorAproximadoTributos %><br>
+    <%= f.text_field :valorAproximadoTributos %>
+  </div>
+  <div class="field">
+    <%= f.label :nrFCI %><br>
+    <%= f.number_field :nrFCI %>
+  </div>
+  <div class="field">
+    <%= f.label :origemMercadoria %><br>
+    <%= f.number_field :origemMercadoria %>
+  </div>
+  <div class="field">
+    <%= f.label :codTributacaoICMS %><br>
+    <%= f.number_field :codTributacaoICMS %>
+  </div>
+  <div class="field">
+    <%= f.label :valorBCICMSSTRetido %><br>
+    <%= f.text_field :valorBCICMSSTRetido %>
+  </div>
+  <div class="field">
+    <%= f.label :valorICMSSTRet %><br>
+    <%= f.text_field :valorICMSSTRet %>
+  </div>
+  <div class="field">
+    <%= f.label :pisCST %><br>
+    <%= f.text_field :pisCST %>
+  </div>
+  <div class="field">
+    <%= f.label :cofinsCST %><br>
+    <%= f.text_field :cofinsCST %>
+  </div>
+  <div class="field">
+    <%= f.label :informacoesAdicionaisProduto %><br>
+    <%= f.text_field :informacoesAdicionaisProduto %>
+  </div>
+  <div class="field">
+    <%= f.label :notaFiscal_id %><br>
+    <%= f.text_field :notaFiscal_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

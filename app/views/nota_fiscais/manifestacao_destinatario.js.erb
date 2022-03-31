@@ -1,0 +1,4 @@
+$('<%= "#botao-acao-nfe-#{@nota_fiscal.id}" %>').html('<%=j render("nota_fiscais/botao_acoes_nfe", nota_fiscal: @nota_fiscal) %>');
+$('<%= "#botao-danfe-nfe-#{@nota_fiscal.id}" %>').html('<%=j render("nota_fiscais/botao_danfe_nfe", nota_fiscal: @nota_fiscal) %>');
+$('<%= "#botao-download-nfe-#{@nota_fiscal.id}" %>').html('<%=j render("nota_fiscais/botao_download_nfe", nota_fiscal: @nota_fiscal) %>');
+toastr['success']('<%= @mensagem %>');

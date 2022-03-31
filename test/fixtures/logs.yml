@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  acao: MyString
+  user_id: 
+  nota_fiscal_id: 
+
+two:
+  acao: MyString
+  user_id: 
+  nota_fiscal_id: 

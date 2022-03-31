@@ -1,0 +1,259 @@
+<!-- <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-center m-t-lg">
+                <h1>
+                    <%#= @mainTitle %>
+                </h1>
+                <small>
+                    <%#= @mainDesc %>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+ -->
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Dashboard Notas Destinas</h2>
+        <ol class="breadcrumb">
+            <!-- <li><a href="<%= url_for :controller => 'home', :action => 'index' %>">Home</a></li> -->
+            <!-- <li class="active"><strong>Notas</strong></li> -->
+        </ol>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+             <%= form_for @search, url: home_index_path, method: :get do |f| %>
+                 <%= f.collection_select :id, @empresas, :id, :nome, {prompt: "Por favor selecione uma empresa", selected: if !params[:q].nil? then params[:q][:id] else @empresa_ini end }, {class: "form-control", :onchange => "this.form.submit()" }  %>
+             <% end %>
+        </div>
+    </div>
+    </br>
+    <div class="row">
+        <%# if !params[:q].nil? %>
+            <% @dashboard.each do |dashboard| %>
+                <div class="col-lg-3">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5><span><i class="fa fa-money"></i></span> Valor Total Nfe's (R$)</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1>
+                                <% unless dashboard.valor.nil? %>
+                                    <%= number_with_precision(dashboard.valor, precision: 2) + " " %>
+                                <% end %>
+                            </h1>
+                            <small><i class="fa fa-caret-up"></i> Últimos 6 meses</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5><span><i class="fa fa-cloud-download"></i></span> Qtde. Nfe's Recebidas</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1><%= dashboard.qt %></h1>
+                            <small><i class="fa fa-caret-up"></i> Últimos 6 meses</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5><span><i class="fa fa-download"></i></span> Qtde. Baixadas</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1><%= dashboard.qt_baixada %></h1>
+                            <small><i class="fa fa-caret-up"></i> Últimos 6 meses</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5><span><i class="fa fa-exclamation-circle"></i></span> Qtde. Canceladas</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h1><%= dashboard.qt_cancelada %></h1>
+                            <small><i class="fa fa-caret-up"></i> Últimos 6 meses</small>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        <%# end %>
+    </div>
+
+    <div class="row">
+        <%# if !params[:q].nil? %>
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h4><i class="fa fa-line-chart"></i> Gráfico dos últimos 6 meses</h4>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div>
+                                    <canvas id="lineChart" height="120"></canvas>
+                                </div>
+                                </br>
+                                <div>
+                                    <ul class="list-group clear-list m-t">
+                                        <li class="list-group-item fist-item">
+                                            <span class="label label-default">1</span> Valor período
+                                        </li>
+                                        <li class="list-group-item fist-item">
+                                            <span class="label label-primary">2</span> Valor baixadas no período
+                                        </li>
+                                     </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <% @grafico.each do |grafico| %>
+                                    <ul class="stat-list">
+                                        <li>
+                                            <!-- <span class="pull-right">
+                                                <h5>
+                                                Recebidas:
+                                                <%#= grafico.qt_recebida %> /
+                                                Baixadas:
+                                                <%#= grafico.qt_baixada %> /
+                                                Ativas:
+                                                <%#= grafico.qt_autorizada %> /
+                                                Falta:
+                                                4 /
+                                                Canceladas:
+                                                <%#= grafico.qt_cancelada %> /
+                                                </h5>
+                                            </span>  -->
+                                            <div class="valor_baixada" style="display:none">R$ <%= number_with_precision(grafico.valor_baixada, precision: 2)%></div>
+                                            <small><i class="fa fa-caret-down"></i> Ano Mês</small>
+                                            <h2 class="no-margins"><%#= "#{grafico.ano_mes.to_s[4,6]}/#{grafico.ano_mes.to_s[0,4]}" %><%= grafico.ano_mes.to_s.insert(4, '/') %></h2>
+                                            <h3 class="no-margins">R$ <%= number_with_precision(grafico.valor, precision: 2)%></h3>
+                                            <small><i class="fa fa-caret-up"></i> Valor total no período</small>
+                                            <div class="stat-percent"><%= number_with_precision((grafico.valor/(@grafico.inject(0) { |sum, p| sum + p.valor }) * 100), precision: 0) %>%<i class="fa fa-level-down text-navy"></i></div>
+                                            <div class="progress progress-mini">
+                                                <div class="progress-bar"></div>
+                                            </div>
+                                            <span>
+                                                <h5>
+                                                    Recebidas:
+                                                    <%= grafico.qt_recebida %> /
+                                                    Baixadas:
+                                                    <%= grafico.qt_baixada %> /
+                                                    Ativas:
+                                                    <%= grafico.qt_autorizada %> /
+                                                    Falta:
+                                                    <%= grafico.qt_autorizada - grafico.qt_baixada %> /
+                                                    Canceladas:
+                                                    <%= grafico.qt_cancelada %>
+                                                </h5>
+                                            </span>
+                                        </li>
+                                        </ul>
+                                        </br>
+                                    </ul>
+                                 <% end %>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        <%# end %>
+    </div>
+</div>
+
+
+<% content_for :javascript do %>
+    <script type="text/javascript">
+        $(function() {
+
+            pos = $(".stat-percent").length;
+
+            for(i=0;i<pos;i++){
+                 $($(".progress-bar")[i]).css("width", $(".stat-percent")[i].textContent);
+            }
+
+            x = $(".no-margins").length;
+            meses = [];
+            valores = [];
+
+            for(i=0;i<x;i++){
+                if (i % 2 == 0) {
+                    meses.push($(".no-margins")[i].textContent);
+                }else{
+                    valores.push($(".no-margins")[i].textContent.substring(2,$(".no-margins")[i].textContent.length).split(".").join("").replace(",","."));
+                }
+            }
+
+            y = $(".valor_baixada").length;
+            valores_baixadas = []
+
+            for(i=0;i<y;i++){
+                valores_baixadas.push($(".valor_baixada")[i].textContent.substring(3,$(".valor_baixada")[i].textContent.length).split(".").join("").replace(",","."));
+            }
+
+            var lineData = {
+
+                labels: meses,
+                datasets: [
+                    {
+                        // label: "Example dataset",
+                        fillColor: "rgba(220,220,220,0.5)",
+                        strokeColor: "rgba(220,220,220,1)",
+                        pointColor: "rgba(220,220,220,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        data: valores
+                    },
+                    {
+                        // label: "Example dataset",
+                        fillColor: "rgba(26,179,148,0.5)",
+                        strokeColor: "rgba(26,179,148,0.7)",
+                        pointColor: "rgba(26,179,148,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(26,179,148,1)",
+                        data: valores_baixadas
+                    }
+                ]
+            };
+
+            var lineOptions = {
+                scaleShowGridLines: true,
+                scaleGridLineColor: "rgba(0,0,0,.05)",
+                scaleGridLineWidth: 1,
+                bezierCurve: true,
+                bezierCurveTension: 0.4,
+                pointDot: true,
+                pointDotRadius: 4,
+                pointDotStrokeWidth: 1,
+                pointHitDetectionRadius: 20,
+                datasetStroke: true,
+                datasetStrokeWidth: 2,
+                datasetFill: true,
+                responsive: true,
+                scaleLabel: function(label){return  'R$ ' + numeroParaMoeda(label.value.toString(), 2, ",", ".");},
+                multiTooltipTemplate: function (label){return  'R$ ' + numeroParaMoeda(label.value.toString(), 2, ",", ".");}
+            };
+
+            if (document.getElementById("lineChart") !== null) {
+                var ctx = document.getElementById("lineChart").getContext("2d");
+                var myNewChart = new Chart(ctx).Line(lineData, lineOptions);
+            }
+
+            function numeroParaMoeda(n, c, d, t) {
+                c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "," : d, t = t == undefined ? "." : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
+                return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+            }
+
+         });
+    </script>
+<% end %>

@@ -1,0 +1,16 @@
+<%= form_tag manifestacao_destinatario_nota_fiscais_path, method: :post, remote: true  do %>
+  <%= hidden_field_tag :id, nota_fiscal.id %>
+  <% if nota_fiscal.codSituacaoManifestacaoDestinatario == "Manifestar" %>
+    <% if nota_fiscal.codSituacaoNfe == "Autorizado" %>
+      <%= hidden_field_tag :tpEvento,  NotaFiscal.tipo_eventos[:"Ciência da Emissão"] %>
+      <%= submit_tag "#{NotaFiscal.codSituacaoManifestacaoDestinatarios[:Manifestar]} - #{nota_fiscal.codSituacaoManifestacaoDestinatario}", class: "btn btn-xs btn-submit-manifestacao", style:"width: 95px;background-color:#CE5602;color:white;", data: {disable_with: "Enviando..."} %>        
+    <% end %>
+  <% elsif nota_fiscal.codSituacaoManifestacaoDestinatario == "Ciência" %> 
+    <% if nota_fiscal.codSituacaoNfe == "Autorizado" %>
+      <%= hidden_field_tag :tpEvento,  NotaFiscal.tipo_eventos[:"Confirmação da Operação"] %>
+      <%= submit_tag "#{NotaFiscal.codSituacaoManifestacaoDestinatarios[:Ciência]} - #{nota_fiscal.codSituacaoManifestacaoDestinatario}", class: "btn btn-xs btn-submit-manifestacao", style: "    width: 95px;background-color: #208AB3;color:white;", data: {disable_with: "Enviando..."} %>
+    <% end %>
+  <% else %>
+    <label class="control-label"><%= "#{NotaFiscal.codSituacaoManifestacaoDestinatarios[nota_fiscal.codSituacaoManifestacaoDestinatario]} - #{nota_fiscal.codSituacaoManifestacaoDestinatario}" %></label> 
+  <% end %>
+<% end %>

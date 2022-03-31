@@ -1,0 +1,123 @@
+<%- model_class = NotaFiscal -%>
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>Notas Fiscais-Terceiros</h2>
+  </div>
+  <div class="col-lg-2"></div>
+</div>
+<p id="notice"><%= notice %></p>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <%= link_to "#modal-importar-terceiro", data: { toggle: "modal" }, class: 'btn btn-primary btn-xs' do %>
+            <span class="glyphicon glyphicon-upload"></span>
+            Importar
+          <% end %>
+          <div class="ibox-tools">
+            <a class="collapse-link">
+              <i class="fa fa-chevron-up"></i>
+            </a>
+            <a href="#modal-form" data-toggle="modal" class="fa fa-search" ><%= link_to '', citacoes_nota_fiscais_path, class: "fa fa-refresh" %></a>
+            <div class="modal inmodal" id="modal-form" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <%= search_form_for @search, url: search_citacoes_nota_fiscais_path do |f| %>
+                  <div class="modal-content animated bounceInRight">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">Pesquisa</h4>
+                    </div>
+                    <div class="modal-body">
+                      <%= f.condition_fields do |c| %>
+                        <%= render "condition_fields", f: c %>
+                      <% end %>
+                      <p><%= link_to_add_fields "Adicionar condições", f, :condition %></p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
+                      <%= f.submit "Procurar", class: "btn btn-primary" %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ibox-content" style="overflow: auto;">
+          <table class="table table-striped table-bordered table-hover Tabela">
+            <thead>
+              <tr>
+                <!-- GROUP só funciona com uma coluna vazia -->
+                <th style="display:none"></th>
+                <th><%=  model_class.human_attribute_name(:id) %></th>
+                <th><%=  model_class.human_attribute_name(:nrChaveNfe) %></th>
+                <th><%=  model_class.human_attribute_name(:nomeEmitente) %></th>
+                <th style="display:none"><%=  model_class.human_attribute_name(:cnpj_transportador) %></th>
+                <th><%=  model_class.human_attribute_name(:valorTotalNfe) %></th>
+                <th><%=  model_class.human_attribute_name(:dtEmissaoNfe) %></th>
+                <th>Data Importação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= content_tag_for(:tr, @nota_fiscais) do |nota_fiscal| %>
+                <td style="display:none"></td>
+                <td><%= nota_fiscal.id %></td>
+                <td><%= nota_fiscal.nrChaveNfe %></td>
+                <td><%= nota_fiscal.nomeEmitente %></td>
+                <% empresa = Empresa.find_by_cnpj(nota_fiscal.cnpj_transportador) %>
+                <td style="display:none">
+                  <span style="color: green;"><%= empresa.nome.upcase %></span>
+                    <% if (nota_fiscal._validade_certificado.to_date - DateTime.now.to_date).to_i > 30 %>
+                        <span style="color: green;"><i class="fa fa-check"></i> <%= nota_fiscal._validade_certificado %> - Falta <%= (nota_fiscal._validade_certificado.to_date - DateTime.now.to_date).to_i %> dias para o certificado expirar!</span>
+                    <% elsif (nota_fiscal._validade_certificado.to_date - DateTime.now.to_date).to_i <= 30 %>
+                        <% if (nota_fiscal._validade_certificado.to_date - DateTime.now.to_date).to_i <= 0 %>
+                            <span style="color: red;"><i class="fa fa-exclamation-triangle"></i><%= nota_fiscal._validade_certificado %> - Certificado expirado!</span>
+                        <% else %>
+                            <span style="color: red;"><i class="fa fa-exclamation-triangle"></i><%= nota_fiscal._validade_certificado %> - Falta <%= (nota_fiscal._validade_certificado.to_date - DateTime.now.to_date).to_i %> dias para o certificado expirar!</span>
+                        <% end %>
+                    <% end %>
+                </td>
+                <td><%= number_with_precision(nota_fiscal.valorTotalNfe, :precision => 2) %></td>
+                <td><%= nota_fiscal.dtEmissaoNfe.strftime('%d/%m/%Y') %></td>
+                <td><%= nota_fiscal.created_at.strftime('%d/%m/%Y %H:%M') %></td>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'modal_importar_nfe_terceiro' %>
+
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    $(function() {
+      var oTable = $('.Tabela').dataTable({
+        "bStateSave": true,
+        "language": {"sSearch": "Buscar:"},
+        "aoColumnDefs": [
+          { 'bSortable': false, 'aTargets': [0,1,2,3,4,5,6,7] }
+        ],
+        "drawCallback": function ( settings ) {
+          var api = this.api();
+          var rows = api.rows( {page:'current'} ).nodes();
+          var last=null;
+
+          api.column(4, {page:'current'} ).data().each( function ( group, i ) {
+            if ( last !== group ) {
+              $(rows).eq( i ).before(
+                '<tr class="group"><td colspan="6">'+group+'</td></tr>'
+              );
+              last = group;
+            }
+          });
+        },
+        "iDisplayLength": 125,
+        "aLengthMenu": [[125, 250, 400, 800, -1], [125, 250, 400, 800, "All"]]
+      });
+    });
+  </script>
+<% end %>

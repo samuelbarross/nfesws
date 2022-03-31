@@ -1,0 +1,662 @@
+<%- model_class = NotaProduto -%>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+            <table>
+                <tr>
+                    <td width="15%"><a href="#final" id="topo">Final</a></td>
+                    <td width="15%"><a href="#icms">ICMS</a></td>
+                    <td width="15%"><a href="#ipi">IPI</a></td>
+                    <td width="15%"><a href="#pis">PIS</a></td>
+                    <td width="15%"><a href="#cofins">COFINS</a></td>
+                </tr>
+            </table>            
+                <p id="notice"><%= notice %></p>
+                <form class="form-horizontal">
+                    <div class="form-group">
+<!--                         <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:notaFiscal) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.notaFiscal.nrChaveNfe %>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div> -->
+
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:nrItem) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.nrItem %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:descricao) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.descricao %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:qtdeComercial) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.qtdeComercial %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:qtdeTributavel) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.qtdeTributavel %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:unidadeComercial) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.unidadeComercial %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:unidadeTributavel) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.unidadeTributavel %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:valorUnitarioComercializacao) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= number_with_precision(@nota_produto.valorUnitarioComercializacao, precision: 2) %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                             <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:valorUnitarioTributacao) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= number_with_precision(@nota_produto.valorUnitarioTributacao, precision: 2) %>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>                    
+
+ 
+                     <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:valorProduto) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= number_with_precision(@nota_produto.valorProduto, precision: 2) %>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>                     
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:codProduto) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.codProduto %>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:codNCM) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.codNCM %>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:codExTIPI) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.codExTIPI %>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:cfop) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.cfop %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:outrasDespesasAcessorias) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.outrasDespesasAcessorias %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:valorDesconto) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= number_with_precision(@nota_produto.valorDesconto, precision: 2) %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:valorTotalFrete) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= number_with_precision(@nota_produto.valorTotalFrete, precision: 2) %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:valorSeguro) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= number_with_precision(@nota_produto.valorSeguro, precision: 2) %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:indicadorComposicaoValorTotalNfe) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.indicadorComposicaoValorTotalNfe %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:codEANComercial) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.codEANComercial %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:codEANTributavel) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.codEANTributavel %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:nrPedidoCompra) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.nrPedidoCompra %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:itemPedidoCompra) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.itemPedidoCompra %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:valorAproximadoTributos) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= number_with_precision(@nota_produto.valorAproximadoTributos, precision: 2) %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:nrFCI) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.nrFCI %>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+
+                    <fieldset id="icms">
+                        <legend>ICMS Normal e ST</legend>
+                        <p><a href="#topo">Topo</a></p> 
+                                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                 <%= model_class.human_attribute_name(:origemMercadoria) %>:
+                            </div>
+                            <div class="col-md-10">
+                                <label class="form-control">
+                                    <%= @nota_produto.origemMercadoria %>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                 <%= model_class.human_attribute_name(:codTributacaoICMS) %>:
+                            </div>
+                            <div class="col-md-10">
+                                <label class="form-control">
+                                    <%= @nota_produto.codTributacaoICMS %>
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <div class="hr-line-dashed"></div>
+
+                                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                 <%= model_class.human_attribute_name(:modalidadeBCICMS) %>:
+                            </div>
+                            <div class="col-md-10">
+                                <label class="form-control">
+                                    <%= @nota_produto.modalidadeBCICMS %>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+
+                                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                 <%= model_class.human_attribute_name(:valorBCSTRet) %>:
+                            </div>
+                            <div class="col-md-10">
+                                <label class="form-control">
+                                    <%= number_with_precision(@nota_produto.valorBCSTRet, precision: 2) %>
+                                </label>
+                            </div>
+                        </div>
+
+                       <div class="hr-line-dashed"></div>
+
+                                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                 <%= model_class.human_attribute_name(:valorICMSSTRet) %>:
+                            </div>
+                            <div class="col-md-10">
+                                <label class="form-control">
+                                    <%= number_with_precision(@nota_produto.valorICMSSTRet, precision: 2) %>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+
+                                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                 <%= model_class.human_attribute_name(:valorBCICMS) %>:
+                            </div>
+                            <div class="col-md-10">
+                                <label class="form-control">
+                                    <%= number_with_precision(@nota_produto.valorBCICMS, precision: 2) %>
+                                </label>
+                            </div>
+                        </div>
+
+                       <div class="hr-line-dashed"></div>
+
+                                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                 <%= model_class.human_attribute_name(:valorAliquotaImpostoICMS) %>:
+                            </div>
+                            <div class="col-md-10">
+                                <label class="form-control">
+                                    <%= number_with_precision(@nota_produto.valorAliquotaImpostoICMS, precision: 2) %>
+                                </label>
+                            </div>
+                        </div>
+
+                       <div class="hr-line-dashed"></div>
+
+                                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                 <%= model_class.human_attribute_name(:valorICMS) %>:
+                            </div>
+                            <div class="col-md-10">
+                                <label class="form-control">
+                                    <%= number_with_precision(@nota_produto.valorICMS, precision: 2) %>
+                                </label>
+                            </div>
+                        </div>                    
+                    </fieldset>
+
+                   <div class="hr-line-dashed"></div>
+
+                    <fieldset id="ipi">
+                        <legend>IPI</legend>
+                        <p><a href="#topo">Topo</a></p> 
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:codEnquadramentoIPI) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.codEnquadramentoIPI %>
+                            </label>
+                        </div>
+                    </div>    
+
+                   <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:codSituacaoTribIPI) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.codSituacaoTribIPI %>
+                            </label>
+                        </div>
+                    </div>  
+
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:valorBCIPI) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= number_with_precision(@nota_produto.valorBCIPI, precision: 2) %>
+                            </label>
+                        </div>
+                    </div>  
+
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:valorAliquotaIPI) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= number_with_precision(@nota_produto.valorAliquotaIPI, precision: 2) %>
+                            </label>
+                        </div>
+                    </div>  
+
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:valorIPI) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= number_with_precision(@nota_produto.valorIPI, precision: 2) %>
+                            </label>
+                        </div>
+                    </div>  
+                    </fieldset>
+<!--                     <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:pisCST) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.pisCST %>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:cofinsCST) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <label class="form-control">
+                                <%= @nota_produto.cofinsCST %>
+                            </label>
+                        </div>
+                    </div> -->
+
+
+                    <div class="hr-line-dashed"></div>
+
+                    <fieldset id="pis">
+                        <legend>PIS</legend>
+                        <p><a href="#topo">Topo</a></p> 
+                         <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                 <%= model_class.human_attribute_name(:codSituacaoTribPIS) %>:
+                            </div>
+                            <div class="col-md-10">
+                                <label class="form-control">
+                                    <%= @nota_produto.codSituacaoTribPIS %>
+                                </label>
+                            </div>
+                        </div>  
+
+                        <div class="hr-line-dashed"></div>
+
+                                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                 <%= model_class.human_attribute_name(:valorBCPIS) %>:
+                            </div>
+                            <div class="col-md-10">
+                                <label class="form-control">
+                                    <%= number_with_precision(@nota_produto.valorBCPIS, precision: 2) %>
+                                </label>
+                            </div>
+                        </div>  
+                        <div class="hr-line-dashed"></div>
+
+                                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                 <%= model_class.human_attribute_name(:valorAliquotaPIS) %>:
+                            </div>
+                            <div class="col-md-10">
+                                <label class="form-control">
+                                    <%= number_with_precision(@nota_produto.valorAliquotaPIS, precision: 4) %>
+                                </label>
+                            </div>
+                        </div>  
+
+                        <div class="hr-line-dashed"></div>
+
+                                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                 <%= model_class.human_attribute_name(:valorPIS) %>:
+                            </div>
+                            <div class="col-md-10">
+                                <label class="form-control">
+                                    <%= number_with_precision(@nota_produto.valorPIS, precision: 2) %>
+                                </label>
+                            </div>
+                        </div>        
+                    </fieldset>
+
+                    <div class="hr-line-dashed"></div>
+
+                    <fieldset id="cofins">
+                        <legend>COFINS</legend>
+                        <p><a href="#topo">Topo</a></p>  
+                         <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                 <%= model_class.human_attribute_name(:codSituacaoTribCofins) %>:
+                            </div>
+                            <div class="col-md-10">
+                                <label class="form-control">
+                                    <%= @nota_produto.codSituacaoTribCofins %>
+                                </label>
+                            </div>
+                        </div>  
+
+                        <div class="hr-line-dashed"></div>
+
+                                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                 <%= model_class.human_attribute_name(:valorBCCofins) %>:
+                            </div>
+                            <div class="col-md-10">
+                                <label class="form-control">
+                                    <%= number_with_precision(@nota_produto.valorBCPIS, precision: 2) %>
+                                </label>
+                            </div>
+                        </div> 
+
+                        <div class="hr-line-dashed"></div>
+
+                                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                 <%= model_class.human_attribute_name(:valorAliquotaCofins) %>:
+                            </div>
+                            <div class="col-md-10">
+                                <label class="form-control">
+                                    <%= number_with_precision(@nota_produto.valorAliquotaCofins, precision: 4) %>
+                                </label>
+                            </div>
+                        </div>  
+                        <div class="hr-line-dashed"></div>
+
+                                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                 <%= model_class.human_attribute_name(:valorCofins) %>:
+                            </div>
+                            <div class="col-md-10">
+                                <label class="form-control">
+                                    <%= number_with_precision(@nota_produto.valorCofins, precision: 2) %>
+                                </label>
+                            </div>
+                        </div>   
+
+                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                             <%= model_class.human_attribute_name(:informacoesAdicionaisProduto) %>:
+                        </div>
+                        <div class="col-md-10">
+                            <textarea disabled class="form-control">
+                                <%= @nota_produto.informacoesAdicionaisProduto %>
+                            </textarea>
+                        </div>
+                    </div>                    
+
+                    <div class="hr-line-dashed"></div>
+
+                                <div class="form-group">
+                    <div class="col-sm-4" id="final">
+                        <%#= link_to edit_nota_produto_path(@nota_produto), class: 'btn btn-primary' do %>
+                        <!-- Editar -->
+                        <%# end %>
+                        <%= link_to 'Voltar', nota_fiscal_path(@nota_produto.notaFiscal.id), :class => 'btn btn-white' %>
+                    </div>
+                </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

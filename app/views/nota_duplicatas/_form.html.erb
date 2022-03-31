@@ -1,0 +1,33 @@
+<%= form_for(@nota_duplicata) do |f| %>
+  <% if @nota_duplicata.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@nota_duplicata.errors.count, "error") %> prohibited this nota_duplicata from being saved:</h2>
+
+      <ul>
+      <% @nota_duplicata.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nrDuplicata %><br>
+    <%= f.text_field :nrDuplicata %>
+  </div>
+  <div class="field">
+    <%= f.label :dtVencimento %><br>
+    <%= f.date_select :dtVencimento %>
+  </div>
+  <div class="field">
+    <%= f.label :valorDuplicata %><br>
+    <%= f.text_field :valorDuplicata %>
+  </div>
+  <div class="field">
+    <%= f.label :notaFiscal_id %><br>
+    <%= f.text_field :notaFiscal_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

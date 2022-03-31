@@ -1,0 +1,11 @@
+<% if @mensagem %>
+	toastr["<%= @tipo_mensagem %>"]("<%=j @mensagem %>");
+<% end %>
+<% if @download %>
+	$("<%= "#nota_fiscal_#{@nfe.id}" %>").find(".check-download-nfe").html("<%=j content_tag(:i, nil, class: "fa fa-check") %>");
+		<% if @danfe %>
+			window.open("<%=j download_danfe_nfe_nota_fiscais_path(id: @nfe.id) %>");
+		<% else %>
+			window.location = "<%=j download_xml_nfe_nota_fiscais_path(id: @nfe.id) %>"
+		<% end %>
+	<% end %>

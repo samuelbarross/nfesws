@@ -1,0 +1,67 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nrItem: 1
+  descricao: MyString
+  qtdeComercial: 1.5
+  qtdeTributavel: 1.5
+  unidadeComercial: MyString
+  unidadeTributavel: MyString
+  valorUnitarioComercializacao: 1.5
+  float: 
+  codProduto: MyString
+  codNCM: MyString
+  codExTIPI: MyString
+  cfop: MyString
+  outrasDespesasAcessorias: MyString
+  valorDesconto: 1.5
+  valorTotalFrete: 1.5
+  valorSeg: 1.5
+  indicadorComposicaoValorTotalNfe: 1
+  codEANComercial: MyString
+  codEANTributavel: MyString
+  nrPedidoCompra: 1
+  itemPedidoCompra: MyString
+  valorAproximadoTributos: 1.5
+  nrFCI: 1
+  origemMercadoria: 1
+  codTributacaoICMS: 1
+  valorBCICMSSTRetido: 1.5
+  valorICMSSTRet: 1.5
+  pisCST: MyString
+  cofinsCST: MyString
+  informacoesAdicionaisProduto: MyString
+  notaFiscal_id: 
+
+two:
+  nrItem: 1
+  descricao: MyString
+  qtdeComercial: 1.5
+  qtdeTributavel: 1.5
+  unidadeComercial: MyString
+  unidadeTributavel: MyString
+  valorUnitarioComercializacao: 1.5
+  float: 
+  codProduto: MyString
+  codNCM: MyString
+  codExTIPI: MyString
+  cfop: MyString
+  outrasDespesasAcessorias: MyString
+  valorDesconto: 1.5
+  valorTotalFrete: 1.5
+  valorSeg: 1.5
+  indicadorComposicaoValorTotalNfe: 1
+  codEANComercial: MyString
+  codEANTributavel: MyString
+  nrPedidoCompra: 1
+  itemPedidoCompra: MyString
+  valorAproximadoTributos: 1.5
+  nrFCI: 1
+  origemMercadoria: 1
+  codTributacaoICMS: 1
+  valorBCICMSSTRetido: 1.5
+  valorICMSSTRet: 1.5
+  pisCST: MyString
+  cofinsCST: MyString
+  informacoesAdicionaisProduto: MyString
+  notaFiscal_id: 

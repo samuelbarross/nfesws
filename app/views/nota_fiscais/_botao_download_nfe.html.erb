@@ -1,0 +1,5 @@
+<% if nota_fiscal.codSituacaoNfe == "Autorizado" || nota_fiscal.danfe != nil %>
+	<% if nota_fiscal.codSituacaoManifestacaoDestinatario == "Confirmada" || nota_fiscal.codSituacaoManifestacaoDestinatario == "Ciência" || nota_fiscal.danfe != nil %>
+	<%= link_to '', download_xml_nfe_sefaz_nota_fiscais_path(id: nota_fiscal.id), remote: true, class: "fa fa-download", 'data-toggle' => 'tooltip', title: 'Download Xml' %>        
+	<% end %>
+<% end %>
